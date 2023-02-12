@@ -1,4 +1,4 @@
-// waveforms
+//waveforms
 pub const sin_wave = @import("src/waveforms.zig").sin_wave;
 pub const cos_wave = @import("src/waveforms.zig").cos_wave;
 pub const exp_wave = @import("src/waveforms.zig").exp_wave;

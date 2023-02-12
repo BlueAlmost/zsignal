@@ -4,7 +4,6 @@ const math = std.math;
 const Complex = std.math.Complex;
 
 const ElementType = @import("./helpers.zig").ElementType;
-const zsignal = @import("zsignal");
 
 const pi = math.pi;
 
@@ -44,7 +43,7 @@ test "\t parzen window \t  even length array\n" {
 
         var x = try allocator.alloc(T, n_even);
 
-        zsignal.parzen(x);
+        parzen(x);
 
         try std.testing.expectApproxEqAbs(@as(T, 0.009259259), x[0], eps);
         try std.testing.expectApproxEqAbs(@as(T, 0.25), x[1], eps);
@@ -63,7 +62,7 @@ test "\t parzen window \t  odd length array\n" {
 
         var x = try allocator.alloc(T, n_odd);
 
-        zsignal.parzen(x);
+        parzen(x);
 
         try std.testing.expectApproxEqAbs(@as(T, 0.005830904), x[0], eps);
         try std.testing.expectApproxEqAbs(@as(T, 0.1574344), x[1], eps);

@@ -3,8 +3,6 @@ const print = std.debug.print;
 const math = std.math;
 const Complex = std.math.Complex;
 
-pub const zsignal = @import("zsignal");
-
 const ElementType = @import("./helpers.zig").ElementType;
 
 const pi = math.pi;
@@ -50,7 +48,7 @@ test "\t bartlett window \t  even length array\n" {
 
         var x = try allocator.alloc(T, n_even);
 
-        zsignal.bartlett(x);
+        bartlett(x);
 
         try std.testing.expectApproxEqAbs(@as(T, 0.0), x[0], eps);
         try std.testing.expectApproxEqAbs(@as(T, 0.4), x[1], eps);
@@ -70,7 +68,7 @@ test "\t bartlett window \t  odd length array\n" {
 
         var x = try allocator.alloc(T, n_odd);
 
-        zsignal.bartlett(x);
+        bartlett(x);
 
         try std.testing.expectApproxEqAbs(@as(T, 0.0), x[0], eps);
         try std.testing.expectApproxEqAbs(@as(T, 0.3333333333), x[1], eps);

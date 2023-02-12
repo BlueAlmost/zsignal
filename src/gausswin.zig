@@ -4,7 +4,6 @@ const math = std.math;
 const Complex = std.math.Complex;
 
 const ElementType = @import("./helpers.zig").ElementType;
-const zsignal = @import("zsignal");
 
 const pi = math.pi;
 
@@ -42,7 +41,7 @@ test "\t gausswin window \t  even length array\n" {
 
         var x = try allocator.alloc(T, n_even);
 
-        zsignal.gausswin(x, 2.5);
+        gausswin(x, 2.5);
 
         try std.testing.expectApproxEqAbs(@as(T, 0.0439369336), x[0], eps);
         try std.testing.expectApproxEqAbs(@as(T, 0.3246524673), x[1], eps);
@@ -61,7 +60,7 @@ test "\t gausswin window \t  odd length array\n" {
 
         var x = try allocator.alloc(T, n_odd);
 
-        zsignal.gausswin(x, 2.5);
+        gausswin(x, 2.5);
 
         try std.testing.expectApproxEqAbs(@as(T, 0.043936933), x[0], eps);
         try std.testing.expectApproxEqAbs(@as(T, 0.249352208), x[1], eps);

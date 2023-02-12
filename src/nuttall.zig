@@ -4,7 +4,6 @@ const math = std.math;
 const Complex = std.math.Complex;
 
 const ElementType = @import("./helpers.zig").ElementType;
-const zsignal = @import("zsignal");
 
 const pi = math.pi;
 
@@ -41,7 +40,7 @@ test "\t nuttall window \t even length array\n" {
 
         var x = try allocator.alloc(T, n_even);
 
-        zsignal.nuttall(x);
+        nuttall(x);
 
         try std.testing.expectApproxEqAbs(@as(T, 0.0003638), x[0], eps);
         try std.testing.expectApproxEqAbs(@as(T, 0.11051525), x[1], eps);
@@ -60,7 +59,7 @@ test "\t nuttall window \t  odd length array\n" {
 
         var x = try allocator.alloc(T, n_odd);
 
-        zsignal.nuttall(x);
+        nuttall(x);
 
         try std.testing.expectApproxEqAbs(@as(T, 0.0003628), x[0], eps);
         try std.testing.expectApproxEqAbs(@as(T, 0.0613345), x[1], eps);

@@ -4,7 +4,6 @@ const math = std.math;
 const Complex = std.math.Complex;
 
 const ElementType = @import("./helpers.zig").ElementType;
-const zsignal = @import("zsignal");
 
 const pi = math.pi;
 
@@ -41,7 +40,7 @@ test "\t bohman window \t even length array\n" {
 
         var x = try allocator.alloc(T, n_even);
 
-        zsignal.bohman(x);
+        bohman(x);
 
         try std.testing.expectApproxEqAbs(@as(T, 0.0), x[0], eps);
         try std.testing.expectApproxEqAbs(@as(T, 0.1791239), x[1], eps);
@@ -59,7 +58,7 @@ test "\t bohman window \t odd length array\n" {
         const allocator = arena.allocator();
 
         var x = try allocator.alloc(T, n_odd);
-        zsignal.bohman(x);
+        bohman(x);
 
         try std.testing.expectApproxEqAbs(@as(T, 0.0), x[0], eps);
         try std.testing.expectApproxEqAbs(@as(T, 0.108997785), x[1], eps);

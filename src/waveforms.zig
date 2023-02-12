@@ -5,7 +5,6 @@ const Complex = std.math.Complex;
 
 const ElementType = @import("./helpers.zig").ElementType;
 const ValueType = @import("./helpers.zig").ValueType;
-const zsignal = @import("zsignal");
 
 pub fn sin_wave(x: anytype, freq: anytype, phase: anytype) void {
     const T = @TypeOf(x);
@@ -62,7 +61,7 @@ test "\t sin_wave \t  array\n" {
         var freq: T = math.pi / 4.0;
         var phase: T = math.pi / 4.0;
 
-        zsignal.sin_wave(x, freq, phase);
+        sin_wave(x, freq, phase);
 
         try std.testing.expectApproxEqAbs(@as(T, math.sqrt1_2), x[0], eps);
         try std.testing.expectApproxEqAbs(@as(T, 1.0), x[1], eps);
@@ -87,7 +86,7 @@ test "\t cos_wave \t  array\n" {
         var freq: T = math.pi / 4.0;
         var phase: T = math.pi / 4.0;
 
-        zsignal.cos_wave(x, freq, phase);
+        cos_wave(x, freq, phase);
 
         try std.testing.expectApproxEqAbs(@as(T, math.sqrt1_2), x[0], eps);
         try std.testing.expectApproxEqAbs(@as(T, 0.0), x[1], eps);
@@ -114,7 +113,7 @@ test "\t exp_wave \t  array\n" {
         var freq: T = math.pi / 4.0;
         var phase: T = math.pi / 4.0;
 
-        zsignal.exp_wave(x, freq, phase);
+        exp_wave(x, freq, phase);
 
         try std.testing.expectApproxEqAbs(@as(T, math.sqrt1_2), x[0].re, eps);
         try std.testing.expectApproxEqAbs(@as(T, 0.0), x[1].re, eps);

@@ -1,24 +1,20 @@
 const std = @import("std");
-const Builder = std.build.Builder;
-const Pkg = std.build.Pkg;
-
-const pkgs = struct {
-    const zsignal = Pkg{
-        .name = "zsignal",
-        .source = .{ .path = "./zsignal.zig" },
-        .dependencies = &[_]Pkg{ },
-    };
-};
 
 pub fn build(b: *std.build.Builder) void {
+
     const target = b.standardTargetOptions(.{});
-    const mode = b.standardReleaseOptions();
+    const optimize = b.standardOptimizeOption(.{});
 
-    const exe_tests = b.addTest("./main_test.zig");
-    exe_tests.addPackage(pkgs.zsignal);
-    exe_tests.setTarget(target);
-    exe_tests.setBuildMode(mode);
+    const unit_tests = b.addTest(.{
+        .root_source_file = .{.path = "./main_test.zig"},
+        .target = target,
+        .optimize = optimize,
+    });
 
-    const test_step = b.step("test", "Run unit tests");
-    test_step.dependOn(&exe_tests.step);
+    unit_tests.addAnonymousModule("zsignal", .{
+        .source_file = .{.path = "./zsignal.zig"},
+    });
+
+    const unit_tests_step = b.step("test", "Run unit tests");
+    unit_tests_step.dependOn(&unit_tests.step);
 }

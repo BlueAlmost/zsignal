@@ -3,8 +3,6 @@ const print = std.debug.print;
 const math = std.math;
 const Complex = std.math.Complex;
 
-const zsignal = @import("zsignal");
-
 const ElementType = @import("./helpers.zig").ElementType;
 
 pub const pi = math.pi;
@@ -49,7 +47,7 @@ test "\t blackman window \t  even length array\n" {
 
         var x = try allocator.alloc(T, n_even);
 
-        zsignal.blackman(x);
+        blackman(x);
 
         try std.testing.expectApproxEqAbs(@as(T, 0.0), x[0], eps);
         try std.testing.expectApproxEqAbs(@as(T, 0.200770143), x[1], eps);
@@ -68,7 +66,7 @@ test "\t blackman window \t  odd length array\n" {
 
         var x = try allocator.alloc(T, n_odd);
 
-        zsignal.blackman(x);
+        blackman(x);
 
         try std.testing.expectApproxEqAbs(@as(T, 0.0), x[0], eps);
         try std.testing.expectApproxEqAbs(@as(T, 0.13), x[1], eps);

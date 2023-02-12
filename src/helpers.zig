@@ -2,7 +2,6 @@ const std = @import("std");
 const math = std.math;
 const Complex = std.math.Complex;
 
-
 pub fn ValueType(comptime T: type) type {
     switch(T) {
         f32, Complex(f32), []f32, []Complex(f32) => {return f32;},
