@@ -70,4 +70,3 @@ test "\t nuttall window \t  odd length array\n" {
         try std.testing.expectApproxEqAbs(@as(T, 0.0003628), x[6], eps);
     }
 }
-

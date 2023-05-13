@@ -71,4 +71,3 @@ test "\t gausswin window \t  odd length array\n" {
         try std.testing.expectApproxEqAbs(@as(T, 0.043936933), x[6], eps);
     }
 }
-

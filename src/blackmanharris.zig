@@ -68,4 +68,3 @@ test "\t blackmanharris window \t  odd length array\n" {
         try std.testing.expectApproxEqAbs(@as(T, 6.0e-5), x[6], eps);
     }
 }
-

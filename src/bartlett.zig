@@ -40,7 +40,6 @@ const n_odd = 7;
 const eps = 1.0e-5;
 
 test "\t bartlett window \t  even length array\n" {
-
     inline for (.{ f32, f64 }) |T| {
         var arena = std.heap.ArenaAllocator.init(std.testing.allocator);
         defer arena.deinit();
@@ -60,7 +59,6 @@ test "\t bartlett window \t  even length array\n" {
 }
 
 test "\t bartlett window \t  odd length array\n" {
-    
     inline for (.{ f32, f64 }) |T| {
         var arena = std.heap.ArenaAllocator.init(std.testing.allocator);
         defer arena.deinit();
@@ -79,4 +77,3 @@ test "\t bartlett window \t  odd length array\n" {
         try std.testing.expectApproxEqAbs(@as(T, 0.0), x[6], eps);
     }
 }
-

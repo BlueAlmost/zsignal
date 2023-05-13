@@ -76,4 +76,3 @@ test "\t tukeywin window \t  odd length array\n" {
         try std.testing.expectApproxEqAbs(@as(T, 0.0), x[6], eps);
     }
 }
-

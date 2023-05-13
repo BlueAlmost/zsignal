@@ -14,7 +14,7 @@ pub fn sin_wave(x: anytype, freq: anytype, phase: anytype) void {
         @compileError("freq/phase type disagreements");
     }
 
-    for (x) |_, i| {
+    for (x, 0..) |_, i| {
         x[i] = @sin(@intToFloat(T_elem, i) * freq + phase);
     }
 }
@@ -27,7 +27,7 @@ pub fn cos_wave(x: anytype, freq: anytype, phase: anytype) void {
         @compileError("freq/phase type disagreements");
     }
 
-    for (x) |_, i| {
+    for (x, 0..) |_, i| {
         x[i] = @cos(@intToFloat(T_elem, i) * freq + phase);
     }
 }
@@ -40,7 +40,7 @@ pub fn exp_wave(x: anytype, freq: anytype, phase: anytype) void {
         @compileError("freq/phase type disagreements");
     }
 
-    for (x) |_, i| {
+    for (x, 0..) |_, i| {
         x[i].re = @cos(@intToFloat(R, i) * freq + phase);
         x[i].im = @sin(@intToFloat(R, i) * freq + phase);
     }
@@ -134,4 +134,3 @@ test "\t exp_wave \t  array\n" {
         try std.testing.expectApproxEqAbs(@as(T, 0.0), x[7].im, eps);
     }
 }
-

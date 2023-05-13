@@ -73,4 +73,3 @@ test "\t parzen window \t  odd length array\n" {
         try std.testing.expectApproxEqAbs(@as(T, 0.005830904), x[6], eps);
     }
 }
-
