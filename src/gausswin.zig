@@ -16,14 +16,14 @@ pub fn gausswin(x: anytype, alpha: anytype) void {
     }
 
     var N: usize = x.len;
-    var Lf: T_elem = @intToFloat(T_elem, N - 1);
+    var Lf: T_elem = @as(T_elem, @floatFromInt(N - 1));
 
     var tmp: T_elem = undefined;
     var n: T_elem = undefined;
 
     var i: usize = 0;
     while (i < N) : (i += 1) {
-        n = @intToFloat(T_elem, i) - 0.5 * Lf;
+        n = @as(T_elem, @floatFromInt(i)) - 0.5 * Lf;
         tmp = alpha * n / (Lf / 2);
         x[i] = @exp(-0.5 * tmp * tmp);
     }

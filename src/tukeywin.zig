@@ -17,11 +17,11 @@ pub fn tukeywin(x: anytype, r: anytype) void {
 
     var N: usize = x.len;
     var z: T_elem = undefined;
-    var z_inc: T_elem = 1.0 / @intToFloat(T_elem, N - 1);
+    var z_inc: T_elem = 1.0 / @as(T_elem, @floatFromInt(N - 1));
 
     var i: usize = 0;
     while (i < N) : (i += 1) {
-        z = @intToFloat(T_elem, i) * z_inc;
+        z = @as(T_elem, @floatFromInt(i)) * z_inc;
 
         if (z < 0.5 * r) {
             x[i] = 0.5 * (1.0 + @cos((2 * pi / r) * (z - 0.5 * r)));

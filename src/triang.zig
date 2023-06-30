@@ -12,7 +12,7 @@ pub fn triang(x: anytype) void {
     comptime var T_elem = ElementType(T);
 
     var L: usize = x.len;
-    var Lf: T_elem = @intToFloat(T_elem, L);
+    var Lf: T_elem = @as(T_elem, @floatFromInt(L));
     var tmp: T_elem = undefined;
 
     var M: usize = undefined;
@@ -22,7 +22,7 @@ pub fn triang(x: anytype) void {
 
         var i: usize = 0;
         while (i < M) : (i += 1) {
-            tmp = @intToFloat(T_elem, 2 * (i + 1) - 1) / Lf;
+            tmp = @as(T_elem, @floatFromInt(2 * (i + 1) - 1)) / Lf;
             x[i] = tmp;
             x[L - 1 - i] = tmp;
         }
@@ -31,7 +31,7 @@ pub fn triang(x: anytype) void {
 
         var i: usize = 0;
         while (i < M) : (i += 1) {
-            tmp = @intToFloat(T_elem, 2 * (i + 1)) / (Lf + 1);
+            tmp = @as(T_elem, @floatFromInt(2 * (i + 1))) / (Lf + 1);
             x[i] = tmp;
             x[L - 1 - i] = tmp;
         }

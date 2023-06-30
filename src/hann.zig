@@ -12,11 +12,11 @@ pub fn hann(x: anytype) void {
     comptime var T_elem = ElementType(T);
 
     var L: usize = x.len;
-    var Nf: T_elem = @intToFloat(T_elem, L - 1);
+    var Nf: T_elem = @as(T_elem, @floatFromInt(L - 1));
 
     var i: usize = 0;
     while (i < L) : (i += 1) {
-        x[i] = 0.5 * (1.0 - @cos(2 * pi * @intToFloat(T_elem, i) / Nf));
+        x[i] = 0.5 * (1.0 - @cos(2 * pi * @as(T_elem, @floatFromInt(i)) / Nf));
     }
 }
 

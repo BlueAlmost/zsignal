@@ -26,7 +26,7 @@ pub fn blackman(x: anytype) void {
 
     var i: usize = 0;
     while (i < M) : (i += 1) {
-        tmp1 = 2 * pi * @intToFloat(T_elem, i) / @intToFloat(T_elem, L - 1);
+        tmp1 = 2 * pi * @as(T_elem, @floatFromInt(i)) / @as(T_elem, @floatFromInt(L - 1));
         tmp2 = 0.42 - 0.5 * @cos(tmp1) + 0.08 * @cos(2 * tmp1);
         x[i] = tmp2;
         x[L - 1 - i] = tmp2;

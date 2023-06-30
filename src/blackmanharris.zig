@@ -16,12 +16,12 @@ pub fn blackmanharris(x: anytype) void {
     const a1: T_elem = 0.48829;
     const a2: T_elem = 0.14128;
     const a3: T_elem = 0.01168;
-    var Lm1: T_elem = @intToFloat(T_elem, L - 1);
+    var Lm1: T_elem = @as(T_elem, @floatFromInt(L - 1));
     var tmp: T_elem = undefined;
 
     var i: usize = 0;
     while (i < L) : (i += 1) {
-        tmp = 2 * pi * @intToFloat(T_elem, i) / Lm1;
+        tmp = 2 * pi * @as(T_elem, @floatFromInt(i)) / Lm1;
         x[i] = a0 - a1 * @cos(tmp) + a2 * @cos(2 * tmp) - a3 * @cos(3 * tmp);
     }
 }

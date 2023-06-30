@@ -15,7 +15,7 @@ pub fn sin_wave(x: anytype, freq: anytype, phase: anytype) void {
     }
 
     for (x, 0..) |_, i| {
-        x[i] = @sin(@intToFloat(T_elem, i) * freq + phase);
+        x[i] = @sin(@as(T_elem, @floatFromInt(i)) * freq + phase);
     }
 }
 
@@ -28,7 +28,7 @@ pub fn cos_wave(x: anytype, freq: anytype, phase: anytype) void {
     }
 
     for (x, 0..) |_, i| {
-        x[i] = @cos(@intToFloat(T_elem, i) * freq + phase);
+        x[i] = @cos(@as(T_elem, @floatFromInt(i)) * freq + phase);
     }
 }
 
@@ -41,8 +41,8 @@ pub fn exp_wave(x: anytype, freq: anytype, phase: anytype) void {
     }
 
     for (x, 0..) |_, i| {
-        x[i].re = @cos(@intToFloat(R, i) * freq + phase);
-        x[i].im = @sin(@intToFloat(R, i) * freq + phase);
+        x[i].re = @cos(@as(R, @floatFromInt(i)) * freq + phase);
+        x[i].im = @sin(@as(R, @floatFromInt(i)) * freq + phase);
     }
 }
 

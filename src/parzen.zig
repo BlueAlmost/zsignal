@@ -12,14 +12,14 @@ pub fn parzen(x: anytype) void {
     comptime var T_elem = ElementType(T);
 
     var N: usize = x.len;
-    var Nf: T_elem = @intToFloat(T_elem, N);
-    var Lf: T_elem = @intToFloat(T_elem, N - 1);
+    var Nf: T_elem = @as(T_elem, @floatFromInt(N));
+    var Lf: T_elem = @as(T_elem, @floatFromInt(N - 1));
     var n: T_elem = undefined;
     var tmp: T_elem = undefined;
 
     var i: usize = 0;
     while (i < N) : (i += 1) {
-        n = @intToFloat(T_elem, i) - 0.5 * Lf;
+        n = @as(T_elem, @floatFromInt(i)) - 0.5 * Lf;
         tmp = @fabs(n) / (0.5 * Nf);
 
         if (@fabs(n) <= Nf / 4) {

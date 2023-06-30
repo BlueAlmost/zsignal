@@ -12,7 +12,7 @@ pub fn bohman(x: anytype) void {
     comptime var T_elem = ElementType(T);
 
     var N: usize = x.len;
-    var Lf: T_elem = @intToFloat(T_elem, N - 1);
+    var Lf: T_elem = @as(T_elem, @floatFromInt(N - 1));
 
     var pi_recip: T_elem = 1.0 / pi;
 
@@ -23,7 +23,7 @@ pub fn bohman(x: anytype) void {
 
     var i: usize = 1;
     while (i < N - 1) : (i += 1) {
-        n = @fabs(2.0 * (@intToFloat(T_elem, i) / Lf) - 1.0);
+        n = @fabs(2.0 * (@as(T_elem, @floatFromInt(i)) / Lf) - 1.0);
         x[i] = (1 - n) * @cos(pi * n) + pi_recip * @sin(pi * n);
     }
 }

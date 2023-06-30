@@ -19,7 +19,7 @@ pub fn bartlett(x: anytype) void {
 
         var i: usize = 0;
         while (i < L2) : (i += 1) {
-            tmp = @intToFloat(T_elem, 2 * i) / @intToFloat(T_elem, L - 1);
+            tmp = @as(T_elem, @floatFromInt(2 * i)) / @as(T_elem, @floatFromInt(L - 1));
             x[i] = tmp;
             x[L - 1 - i] = tmp;
         }
@@ -27,7 +27,7 @@ pub fn bartlett(x: anytype) void {
         var M: usize = (L - 1) / 2;
         var i: usize = 0;
         while (i < M) : (i += 1) {
-            tmp = @intToFloat(T_elem, i) / @intToFloat(T_elem, M);
+            tmp = @as(T_elem, @floatFromInt(i)) / @as(T_elem, @floatFromInt(M));
             x[i] = tmp;
             x[L - 1 - i] = tmp;
         }
