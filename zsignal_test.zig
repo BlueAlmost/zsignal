@@ -12,4 +12,5 @@ test "begin test list\n" {
     _ = @import("src/triang.zig");
     _ = @import("src/tukeywin.zig");
     _ = @import("src/waveforms.zig");
+    _ = @import("src/oscillators.zig");
 }

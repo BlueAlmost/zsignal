@@ -9,20 +9,20 @@ const pi = math.pi;
 
 pub fn parzen(x: anytype) void {
     const T = @TypeOf(x);
-    comptime var T_elem = ElementType(T);
+    const T_elem = ElementType(T);
 
-    var N: usize = x.len;
-    var Nf: T_elem = @as(T_elem, @floatFromInt(N));
-    var Lf: T_elem = @as(T_elem, @floatFromInt(N - 1));
+    const N: usize = x.len;
+    const Nf: T_elem = @as(T_elem, @floatFromInt(N));
+    const Lf: T_elem = @as(T_elem, @floatFromInt(N - 1));
     var n: T_elem = undefined;
     var tmp: T_elem = undefined;
 
     var i: usize = 0;
     while (i < N) : (i += 1) {
         n = @as(T_elem, @floatFromInt(i)) - 0.5 * Lf;
-        tmp = @fabs(n) / (0.5 * Nf);
+        tmp = @abs(n) / (0.5 * Nf);
 
-        if (@fabs(n) <= Nf / 4) {
+        if (@abs(n) <= Nf / 4) {
             x[i] = 1 - 6 * (tmp * tmp) + 6 * (tmp * tmp * tmp);
         } else {
             tmp = 1 - tmp;
@@ -41,7 +41,7 @@ test "\t parzen window \t  even length array\n" {
         defer arena.deinit();
         const allocator = arena.allocator();
 
-        var x = try allocator.alloc(T, n_even);
+        const x = try allocator.alloc(T, n_even);
 
         parzen(x);
 
@@ -60,7 +60,7 @@ test "\t parzen window \t  odd length array\n" {
         defer arena.deinit();
         const allocator = arena.allocator();
 
-        var x = try allocator.alloc(T, n_odd);
+        const x = try allocator.alloc(T, n_odd);
 
         parzen(x);
 

@@ -3,6 +3,10 @@ pub const sin_wave = @import("src/waveforms.zig").sin_wave;
 pub const cos_wave = @import("src/waveforms.zig").cos_wave;
 pub const exp_wave = @import("src/waveforms.zig").exp_wave;
 
+//oscillators
+pub const QuadOscillator = @import("src/oscillators.zig").QuadOscillator;
+
+
 // windows
 pub const bartlett = @import("src/bartlett.zig").bartlett;
 pub const blackman = @import("src/blackman.zig").blackman;

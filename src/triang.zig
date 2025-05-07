@@ -9,10 +9,10 @@ const pi = math.pi;
 
 pub fn triang(x: anytype) void {
     const T = @TypeOf(x);
-    comptime var T_elem = ElementType(T);
+    const T_elem = ElementType(T);
 
-    var L: usize = x.len;
-    var Lf: T_elem = @as(T_elem, @floatFromInt(L));
+    const L: usize = x.len;
+    const Lf: T_elem = @as(T_elem, @floatFromInt(L));
     var tmp: T_elem = undefined;
 
     var M: usize = undefined;
@@ -48,7 +48,7 @@ test "\t triang window \t even length array\n" {
         defer arena.deinit();
         const allocator = arena.allocator();
 
-        var x = try allocator.alloc(T, n_even);
+        const x = try allocator.alloc(T, n_even);
 
         triang(x);
 
@@ -67,7 +67,7 @@ test "\t triang window \t odd length array\n" {
         defer arena.deinit();
         const allocator = arena.allocator();
 
-        var x = try allocator.alloc(T, n_odd);
+        const x = try allocator.alloc(T, n_odd);
 
         triang(x);
 

@@ -9,16 +9,16 @@ const pi = math.pi;
 
 pub fn nuttall(x: anytype) void {
     const T = @TypeOf(x);
-    comptime var T_elem = ElementType(T);
+    const T_elem = ElementType(T);
 
-    var L: usize = x.len;
+    const L: usize = x.len;
 
     const a0: T_elem = 0.3635819;
     const a1: T_elem = 0.4891775;
     const a2: T_elem = 0.1365995;
     const a3: T_elem = 0.0106411;
 
-    var Lm1: T_elem = @as(T_elem, @floatFromInt(L - 1));
+    const Lm1: T_elem = @as(T_elem, @floatFromInt(L - 1));
     var tmp: T_elem = undefined;
 
     var i: usize = 0;
@@ -38,7 +38,7 @@ test "\t nuttall window \t even length array\n" {
         defer arena.deinit();
         const allocator = arena.allocator();
 
-        var x = try allocator.alloc(T, n_even);
+        const x = try allocator.alloc(T, n_even);
 
         nuttall(x);
 
@@ -57,7 +57,7 @@ test "\t nuttall window \t  odd length array\n" {
         defer arena.deinit();
         const allocator = arena.allocator();
 
-        var x = try allocator.alloc(T, n_odd);
+        const x = try allocator.alloc(T, n_odd);
 
         nuttall(x);
 

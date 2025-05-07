@@ -9,9 +9,9 @@ pub const pi = math.pi;
 
 pub fn blackman(x: anytype) void {
     const T = @TypeOf(x);
-    comptime var T_elem = ElementType(T);
+    const T_elem = ElementType(T);
 
-    var L: usize = x.len;
+    const L: usize = x.len;
     var M: usize = undefined;
 
     if (@mod(x.len, 2) == 0) {
@@ -45,7 +45,7 @@ test "\t blackman window \t  even length array\n" {
         defer arena.deinit();
         const allocator = arena.allocator();
 
-        var x = try allocator.alloc(T, n_even);
+        const x = try allocator.alloc(T, n_even);
 
         blackman(x);
 
@@ -64,7 +64,7 @@ test "\t blackman window \t  odd length array\n" {
         defer arena.deinit();
         const allocator = arena.allocator();
 
-        var x = try allocator.alloc(T, n_odd);
+        const x = try allocator.alloc(T, n_odd);
 
         blackman(x);
 

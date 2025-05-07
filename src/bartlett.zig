@@ -9,13 +9,13 @@ const pi = math.pi;
 
 pub fn bartlett(x: anytype) void {
     const T = @TypeOf(x);
-    comptime var T_elem = ElementType(T);
+    const T_elem = ElementType(T);
 
-    var L: usize = x.len;
+    const L: usize = x.len;
     var tmp: T_elem = undefined;
 
     if (@mod(x.len, 2) == 0) {
-        var L2: usize = L / 2;
+        const L2: usize = L / 2;
 
         var i: usize = 0;
         while (i < L2) : (i += 1) {
@@ -24,7 +24,7 @@ pub fn bartlett(x: anytype) void {
             x[L - 1 - i] = tmp;
         }
     } else {
-        var M: usize = (L - 1) / 2;
+        const M: usize = (L - 1) / 2;
         var i: usize = 0;
         while (i < M) : (i += 1) {
             tmp = @as(T_elem, @floatFromInt(i)) / @as(T_elem, @floatFromInt(M));
@@ -45,7 +45,7 @@ test "\t bartlett window \t  even length array\n" {
         defer arena.deinit();
         const allocator = arena.allocator();
 
-        var x = try allocator.alloc(T, n_even);
+        const x = try allocator.alloc(T, n_even);
 
         bartlett(x);
 
@@ -64,7 +64,7 @@ test "\t bartlett window \t  odd length array\n" {
         defer arena.deinit();
         const allocator = arena.allocator();
 
-        var x = try allocator.alloc(T, n_odd);
+        const x = try allocator.alloc(T, n_odd);
 
         bartlett(x);
 

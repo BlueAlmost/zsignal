@@ -9,15 +9,15 @@ pub const pi = math.pi;
 
 pub fn tukeywin(x: anytype, r: anytype) void {
     const T = @TypeOf(x);
-    comptime var T_elem = ElementType(T);
+    const T_elem = ElementType(T);
 
     if ((@TypeOf(r) != T_elem) and (@TypeOf(r) != comptime_float)) {
         @compileError("r type disagreement");
     }
 
-    var N: usize = x.len;
+    const N: usize = x.len;
     var z: T_elem = undefined;
-    var z_inc: T_elem = 1.0 / @as(T_elem, @floatFromInt(N - 1));
+    const z_inc: T_elem = 1.0 / @as(T_elem, @floatFromInt(N - 1));
 
     var i: usize = 0;
     while (i < N) : (i += 1) {
@@ -44,7 +44,7 @@ test "\t tukeywin window \t  even length array\n" {
         defer arena.deinit();
         const allocator = arena.allocator();
 
-        var x = try allocator.alloc(T, n_even);
+        const x = try allocator.alloc(T, n_even);
 
         tukeywin(x, r_test);
 
@@ -63,7 +63,7 @@ test "\t tukeywin window \t  odd length array\n" {
         defer arena.deinit();
         const allocator = arena.allocator();
 
-        var x = try allocator.alloc(T, n_odd);
+        const x = try allocator.alloc(T, n_odd);
 
         tukeywin(x, r_test);
 

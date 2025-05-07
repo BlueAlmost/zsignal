@@ -8,7 +8,7 @@ const ValueType = @import("./helpers.zig").ValueType;
 
 pub fn sin_wave(x: anytype, freq: anytype, phase: anytype) void {
     const T = @TypeOf(x);
-    comptime var T_elem = ElementType(T);
+    const T_elem = ElementType(T);
 
     if ((@TypeOf(freq) != T_elem) or (@TypeOf(phase) != T_elem)) {
         @compileError("freq/phase type disagreements");
@@ -21,7 +21,7 @@ pub fn sin_wave(x: anytype, freq: anytype, phase: anytype) void {
 
 pub fn cos_wave(x: anytype, freq: anytype, phase: anytype) void {
     const T = @TypeOf(x);
-    comptime var T_elem = ElementType(T);
+    const T_elem = ElementType(T);
 
     if ((@TypeOf(freq) != T_elem) or (@TypeOf(phase) != T_elem)) {
         @compileError("freq/phase type disagreements");
@@ -34,7 +34,7 @@ pub fn cos_wave(x: anytype, freq: anytype, phase: anytype) void {
 
 pub fn exp_wave(x: anytype, freq: anytype, phase: anytype) void {
     const T = @TypeOf(x);
-    comptime var R = ValueType(T);
+    const R = ValueType(T);
 
     if ((@TypeOf(freq) != R) or (@TypeOf(phase) != R)) {
         @compileError("freq/phase type disagreements");
@@ -57,9 +57,9 @@ test "\t sin_wave \t  array\n" {
         defer arena.deinit();
         const allocator = arena.allocator();
 
-        var x = try allocator.alloc(T, n);
-        var freq: T = math.pi / 4.0;
-        var phase: T = math.pi / 4.0;
+        const x = try allocator.alloc(T, n);
+        const freq: T = math.pi / 4.0;
+        const phase: T = math.pi / 4.0;
 
         sin_wave(x, freq, phase);
 
@@ -82,9 +82,9 @@ test "\t cos_wave \t  array\n" {
         defer arena.deinit();
         const allocator = arena.allocator();
 
-        var x = try allocator.alloc(T, n);
-        var freq: T = math.pi / 4.0;
-        var phase: T = math.pi / 4.0;
+        const x = try allocator.alloc(T, n);
+        const freq: T = math.pi / 4.0;
+        const phase: T = math.pi / 4.0;
 
         cos_wave(x, freq, phase);
 
@@ -109,9 +109,9 @@ test "\t exp_wave \t  array\n" {
         defer arena.deinit();
         const allocator = arena.allocator();
 
-        var x = try allocator.alloc(C, n);
-        var freq: T = math.pi / 4.0;
-        var phase: T = math.pi / 4.0;
+        const x = try allocator.alloc(C, n);
+        const freq: T = math.pi / 4.0;
+        const phase: T = math.pi / 4.0;
 
         exp_wave(x, freq, phase);
 

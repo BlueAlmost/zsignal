@@ -9,14 +9,14 @@ const pi = math.pi;
 
 pub fn gausswin(x: anytype, alpha: anytype) void {
     const T = @TypeOf(x);
-    comptime var T_elem = ElementType(T);
+    const T_elem = ElementType(T);
 
     if ((@TypeOf(alpha) != T_elem) and (@TypeOf(alpha) != comptime_float)) {
         @compileError("alpha type disagreement");
     }
 
-    var N: usize = x.len;
-    var Lf: T_elem = @as(T_elem, @floatFromInt(N - 1));
+    const N: usize = x.len;
+    const Lf: T_elem = @as(T_elem, @floatFromInt(N - 1));
 
     var tmp: T_elem = undefined;
     var n: T_elem = undefined;
@@ -39,7 +39,7 @@ test "\t gausswin window \t  even length array\n" {
         defer arena.deinit();
         const allocator = arena.allocator();
 
-        var x = try allocator.alloc(T, n_even);
+        const x = try allocator.alloc(T, n_even);
 
         gausswin(x, 2.5);
 
@@ -58,7 +58,7 @@ test "\t gausswin window \t  odd length array\n" {
         defer arena.deinit();
         const allocator = arena.allocator();
 
-        var x = try allocator.alloc(T, n_odd);
+        const x = try allocator.alloc(T, n_odd);
 
         gausswin(x, 2.5);
 
